@@ -13,16 +13,14 @@ export const getFollowedUser = async () => {
               blockerId: self.id,
             },
           },
-          // blockedBy: {
-          //   none: {
-          //     blockerId: self.id,
-          //   },
-          // },
         },
       },
       include: {
-        following: true,
-        follower: true,
+        following: {
+          include: {
+            stream: true,
+          },
+        },
       },
     });
     return followedUsers;
