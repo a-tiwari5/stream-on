@@ -79,7 +79,7 @@ export const Chat = ({
             isHidden={isHidden}
             isFollowersOnly={isChatFollowersOnly}
             isDelayed={isChatDelayed}
-            isFollowing={isChatFollowersOnly}
+            isFollowing={isFollowing}
           />
         </>
       )}
