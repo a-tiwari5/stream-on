@@ -32,7 +32,7 @@ export const ResultsSkeleton = () => {
   return (
     <div>
       <Skeleton className="h-8 w-[290px] mb-4" />
-      <div className="flex flex-colgap-y-4">
+      <div className="flex flex-col gap-y-4">
         {[...Array(4)].map((_, i) => (
           <ResultsCardSkelton key={i} />
         ))}

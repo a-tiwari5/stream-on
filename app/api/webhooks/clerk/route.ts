@@ -2,6 +2,7 @@ import { Webhook } from "svix";
 import { headers } from "next/headers";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
+import { resetIngresses } from "@/actions/ingress";
 
 export async function POST(req: Request) {
   const CLERK_WEBHOOK_SECERT = process.env.CLERK_WEBHOOK_SECERT;
@@ -90,15 +91,16 @@ export async function POST(req: Request) {
   }
 
   if (eventType === "user.deleted") {
-    const currentUser = await db.user.findUnique({
-      where: {
-        externalUserId: payload.data.id,
-      },
-    });
+    await resetIngresses(payload.data.id);
+    // const currentUser = await db.user.findUnique({
+    //   where: {
+    //     externalUserId: payload.data.id,
+    //   },
+    // });
 
-    if (!currentUser) {
-      return new Response("User not found", { status: 404 });
-    }
+    // if (!currentUser) {
+    //   return new Response("User not found", { status: 404 });
+    // }
 
     await db.user.delete({
       where: {

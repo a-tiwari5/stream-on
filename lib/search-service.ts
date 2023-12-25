@@ -20,8 +20,13 @@ export const getSearch = async (term: string) => {
           { user: { username: { contains: term } } },
         ],
       },
-      include: {
+      select: {
         user: true,
+        id: true,
+        name: true,
+        isLive: true,
+        thumbnailUrl: true,
+        updatedAt: true,
       },
       orderBy: [
         {
@@ -40,8 +45,13 @@ export const getSearch = async (term: string) => {
           { user: { username: { contains: term } } },
         ],
       },
-      include: {
+      select: {
         user: true,
+        id: true,
+        name: true,
+        isLive: true,
+        thumbnailUrl: true,
+        updatedAt: true,
       },
       orderBy: [
         {
